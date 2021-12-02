@@ -29,12 +29,31 @@
 </p>
 
 
-## 1.1 更新内容
+## 在线预览
+
+
+
+**项目链接：**[http://49.235.248.222/](http://49.235.248.222/)
+
+**接口链接：**[http://49.235.248.222:9090/doc.html/](http://49.235.248.222:9090/doc.html)
+
+超级管理员账号：nanjustar    密码：123456
+
+普通管理员账号：admin		  密码：123456
+
+**GitHub地址：**[https://github.com/duan-nan/nanjustar-template](https://github.com/duan-nan/nanjustar-template)
+
+**Gitee地址：**   [https://gitee.com/duan_nan/nanjustar-template](https://gitee.com/duan_nan/nanjustar-template)
+
+
+
+## v1.1更新
+
 1. 界面效果优化，使界面更加丝滑顺畅。（动画优化）
 2. 完成菜单管理界面部分功能（部分功能）
 3. 新增图标库到项目中（Elementui 图标）
 4. 新增日志管理记录（aop + 自定义注解）
-5. 新增在线预览 [http://49.235.248.222/](http://49.235.248.222/)(nanjustar 超级管理员  admin 管理员)
+5. 新增在线预览
 
 # CSDN动态
 ## [nanjustar 后台管理 专栏](https://blog.csdn.net/nanshen__/category_11488844.html?spm=1001.2014.3001.5482)
@@ -43,15 +62,15 @@
 
 # 前言
 
-​		为什么要做这个项目呢？因为我主要是做java的，平时学习做项目过程中一直在开发后端接口🖌，枯燥的后端开发让我决定自己开发界面🧐。
-
-​		vue 端学习一直顺风顺水🤗，直到我决定要自己去搭建后台。。我发现页面端布局、侧边菜单的布置、顶部历史菜单的设计 让我抱头痛哭😭，我开始转向了开源项目... 
-
-​		看着开源项目的预览，真的棒，我要用！！！👍  但是问题页随之而来 *npm install Error*是什么鬼👀？？ 经历了千辛万苦终于把依赖拉下来了！！😄 但是这这代码好多啊！这么多js！封装这么严重！看不懂啊🤔！！！ 最终你选择去寻找简洁版的后台管理界面！🥺
-
-​		是的，我想说的就是 我就是你要找的简洁版后台管理界面😎。我们以及搭建好了侧边栏、面包屑、以及顶部历史菜单。 剩下了所有的界面都由你来设计🤠，来完成你自己的作品。
-
-​		如果我的项目可以帮到你，请点亮一个小小的star 🌟🌟
+		为什么要做这个项目呢？因为我主要是做java的，平时学习做项目过程中一直在开发后端接口🖌，枯燥的后端开发让我决定自己开发界面🧐。
+	
+		vue 端学习一直顺风顺水🤗，直到我决定要自己去搭建后台。。我发现页面端布局、侧边菜单的布置、顶部历史菜单的设计 让我抱头痛哭😭，我开始转向了开源项目... 
+	
+		看着开源项目的预览，真的棒，我要用！！！👍  但是问题页随之而来 *npm install Error*是什么鬼👀？？ 经历了千辛万苦终于把依赖拉下来了！！😄 但是这这代码好多啊！这么多js！封装这么严重！看不懂啊🤔！！！ 最终你选择去寻找简洁版的后台管理界面！🥺
+	
+		是的，我想说的就是 我就是你要找的简洁版后台管理界面😎。我们以及搭建好了侧边栏、面包屑、以及顶部历史菜单。 剩下了所有的界面都由你来设计🤠，来完成你自己的作品。
+	
+		如果我的项目可以帮到你，请点亮一个小小的star 🌟🌟
 
 # 目录结构
 项目地址：**GItee:**  https://gitee.com/duan_nan/nanjustar-template
@@ -226,3 +245,13 @@ nanjustar-admin
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/c68068e86e844471a950803b756f8830.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5qWg5qmY5pif,size_20,color_FFFFFF,t_70,g_se,x_16)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/708387d99d144fff9e92ad079244e6ff.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5qWg5qmY5pif,size_20,color_FFFFFF,t_70,g_se,x_16)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/fcce28f8a73a4cd8ae120648ffec0606.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5qWg5qmY5pif,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/31f99f6288084ccca494a65a7cf58826.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5qWg5qmY5pif,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/f39ef40fe54c4a70906c9d8038243cec.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5qWg5qmY5pif,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/93dcf0e5dd5e4d3ea9b08a4b97082731.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5qWg5qmY5pif,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+## 交流群
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/bbfe1a7b95f2463ebbb0ccdcd83003a5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5qWg5qmY5pif,size_20,color_FFFFFF,t_70,g_se,x_16)
