@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nanjustar.mapper.mapper.system.OptLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.nanjustar.api.moudle.system.entity.OptLog">
+        <id column="opt_id" property="optId" />
+        <result column="title" property="title" />
+        <result column="business_type" property="businessType" />
+        <result column="method_url" property="methodUrl" />
+        <result column="request_type" property="requestType" />
+        <result column="opt_name" property="optName" />
+        <result column="opt_url" property="optUrl" />
+        <result column="opt_ip" property="optIp" />
+        <result column="opt_address" property="optAddress" />
+        <result column="request_param" property="requestParam" />
+        <result column="response_data" property="responseData" />
+        <result column="error_msg" property="errorMsg" />
+        <result column="status" property="status" />
+        <result column="opt_time" property="optTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        opt_id, title, business_type, method_url, request_type, opt_name, opt_url, opt_ip, opt_address, request_param, response_data, error_msg, status, opt_time
+    </sql>
+
+</mapper>

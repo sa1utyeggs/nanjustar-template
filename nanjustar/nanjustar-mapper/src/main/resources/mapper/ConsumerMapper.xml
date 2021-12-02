@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nanjustar.mapper.mapper.security.ConsumerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.nanjustar.api.moudle.security.entity.Consumer">
+        <id column="user_id" property="userId" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="nickname" property="nickname" />
+        <result column="avatar" property="avatar" />
+        <result column="email" property="email" />
+        <result column="phonenum" property="phonenum" />
+        <result column="gender" property="gender" />
+        <result column="login_type" property="loginType" />
+        <result column="last_login_time" property="lastLoginTime" />
+        <result column="login_ip" property="loginIp" />
+        <result column="login_address" property="loginAddress" />
+        <result column="is_disable" property="isDisable" />
+        <result column="del_flag" property="delFlag" />
+        <result column="create_by" property="createBy" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="update_by" property="updateBy" />
+        <result column="gmt_update" property="gmtUpdate" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        user_id, username, password, nickname, avatar, email, phonenum, gender, login_type, last_login_time, login_ip, login_address, is_disable, del_flag, create_by, gmt_create, update_by, gmt_update, remark
+    </sql>
+
+</mapper>
