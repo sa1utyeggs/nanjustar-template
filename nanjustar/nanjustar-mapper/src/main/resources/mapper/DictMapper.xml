@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nanjustar.mapper.mapper.system.DictMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.nanjustar.api.moudle.system.entity.Dict">
+        <id column="dict_id" property="dictId" />
+        <result column="dict_name" property="dictName" />
+        <result column="dict_value" property="dictValue" />
+        <result column="dict_code" property="dictCode" />
+        <result column="parent_id" property="parentId" />
+        <result column="create_by" property="createBy" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="update_by" property="updateBy" />
+        <result column="gmt_update" property="gmtUpdate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        dict_id, dict_name, dict_value, dict_code, parent_id, create_by, gmt_create, update_by, gmt_update
+    </sql>
+
+</mapper>

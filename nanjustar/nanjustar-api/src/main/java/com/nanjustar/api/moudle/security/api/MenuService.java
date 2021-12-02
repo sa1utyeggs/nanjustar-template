@@ -4,6 +4,7 @@ import com.nanjustar.api.moudle.security.dto.MenuBackDto;
 import com.nanjustar.api.moudle.security.dto.MenuRouterDto;
 import com.nanjustar.api.moudle.security.entity.Menu;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.nanjustar.api.moudle.security.vo.MenuConditionVo;
 import com.nanjustar.api.moudle.security.vo.MenuVo;
 
 import java.util.List;
@@ -25,11 +26,11 @@ public interface MenuService extends IService<Menu> {
     List<MenuRouterDto> listMenuRouter();
 
     /**
-     * 通过id查询菜单信息
+     * 通过id查询子菜单信息
      * @param id 菜单id
-     * @return {@link MenuBackDto} 菜单信息
+     * @return {@link MenuBackDto} 子菜单信息
      */
-    MenuBackDto getMenuById(Integer id);
+    List<MenuBackDto> listChildrenMenuById(Integer id);
 
     /**
      * 查询父级菜单信息
@@ -56,8 +57,9 @@ public interface MenuService extends IService<Menu> {
     void deleteMenu(Integer id);
 
     /**
-     * 批量删除菜单信息
-     * @param idList id集合
+     * 条件查询菜单信息
+     * @param menuConditionVo 菜单条件 vo 类
+     * @return {@link MenuBackDto} 菜单信息
      */
-    void deleteMenu(List<Integer> idList);
+    List<MenuBackDto> listMenuByCondition(MenuConditionVo menuConditionVo);
 }

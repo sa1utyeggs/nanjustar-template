@@ -17,5 +17,10 @@ public class SystemConst {
      */
     public static final String LOGOUT_SUCCESS = "用户退出成功！";
 
+    /**
+     * 记住我  散列盐值
+     */
+    public static final String REMEMBER_ME_KEY = "nanjustar@#$";
+
 
 }

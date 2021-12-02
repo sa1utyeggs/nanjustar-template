@@ -5,6 +5,7 @@ import store from './store'
 
 
 //=======================  CSS  ===========================
+import 'animate.css';
 
 //=======================  JS  ===========================
 import config from "@/assets/js/config";
@@ -16,7 +17,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 // 滚动条
 import Nprogress from 'nprogress';
-import {getUserInfo} from "@/api/consumer/consumer";
+import {getUserInfo} from "./api/consumer/consumerApi";
 
 //=======================  全局变量  ===========================
 Vue.config.productionTip = false
@@ -35,7 +36,7 @@ router.beforeEach(((to, from, next) => {
         if (!window.sessionStorage.getItem('userInfo')) {
             getUserInfo()
                 .then(res => {
-                    store.dispatch('setUserInfo',res.data)
+                    store.dispatch('setUserInfo', res.data)
                 });
         }
         next();

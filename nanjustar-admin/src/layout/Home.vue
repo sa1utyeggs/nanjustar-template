@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <el-aside :width="isCollapse?'60px':'230px'">
+    <el-aside :width="isCollapse?'60px':'210px'" class="side">
       <side-bar></side-bar>
     </el-aside>
     <el-container>
@@ -61,11 +61,15 @@ export default {
 }
 
 .el-main {
-  background-color: #f5f4f4;
   height: 100%;
+  width: 100%;
+}
+.side{
+  box-shadow: 2px 8px 5px #888888;
+  overflow-x: hidden;
 }
 
 .navList {
-  margin: -19px -20px 0 -20px;
+  margin: -19px -15px 10px -15px;
 }
 </style>

@@ -7,6 +7,7 @@
     <artifactId>nanjustar</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
+
     <modules>
         <module>nanjustar-common</module>
         <module>nanjustar-business</module>
@@ -28,7 +29,7 @@
         <druid-spring.version>1.1.22</druid-spring.version>
         <mybatis-plus.version>3.4.2</mybatis-plus.version>
         <!--==============  工具类  ==================-->
-        <commons.collections.version>3.2.2</commons.collections.version>
+        <commons.collections.version>4.4</commons.collections.version>
         <fastjson.version>1.2.78</fastjson.version>
         <jwt.version>0.9.1</jwt.version>
         <userAgent.version>1.21</userAgent.version>
@@ -120,6 +121,15 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.4</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>

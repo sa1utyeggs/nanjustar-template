@@ -10,8 +10,9 @@ import com.nanjustar.api.moudle.security.dto.MenuRouterDto;
 import com.nanjustar.api.moudle.security.entity.ConsumerRole;
 import com.nanjustar.api.moudle.security.entity.Menu;
 import com.nanjustar.api.moudle.security.entity.MenuRole;
+import com.nanjustar.api.moudle.security.vo.MenuConditionVo;
 import com.nanjustar.api.moudle.security.vo.MenuVo;
-import com.nanjustar.business.util.ConsumerUtil;
+import com.nanjustar.mapper.utils.ConsumerUtil;
 import com.nanjustar.common.constant.CommonConst;
 import com.nanjustar.common.constant.RedisConst;
 import com.nanjustar.common.constant.ServiceErrorConst;
@@ -82,36 +83,27 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     }
 
     @Override
-    public MenuBackDto getMenuById(Integer id) {
-        /*------------------------  检查菜单是否存在开始  -----------------------------*/
-        Integer count = baseMapper.selectCount(new LambdaQueryWrapper<Menu>()
-                .eq(Menu::getMenuId, id)
-                .eq(Menu::getIsHidden, CommonConst.NOT_HIDDEN)
-                .eq(Menu::getIsDisable, CommonConst.NOT_DISABLE)
+    public List<MenuBackDto> listChildrenMenuById(Integer id) {
+        /*------------------------  查询子菜单信息开始  -----------------------------*/
+        List<Menu> childrenMenu = baseMapper.selectList(new LambdaQueryWrapper<Menu>()
+                .eq(Menu::getParentId, id)
                 .eq(Menu::getDelFlag, CommonConst.NOT_DELETE));
-        if (AssertUtil.isNumberZero(count)) {
-            throw new NanjustarException(ServiceErrorConst.QUERY_DATA_WITH_ERROR);
-        }
-        /*------------------------  检查菜单是否存在完成  -----------------------------*/
-        /*------------------------  开始查询菜单信息  -----------------------------*/
-        Menu menu = baseMapper.selectOne(new LambdaQueryWrapper<Menu>()
-                .eq(Menu::getMenuId, id)
-                .eq(Menu::getIsHidden, CommonConst.NOT_HIDDEN)
-                .eq(Menu::getIsDisable, CommonConst.NOT_DISABLE)
-                .eq(Menu::getDelFlag, CommonConst.NOT_DELETE));
-        /*------------------------  查询菜单信息完成  -----------------------------*/
-        MenuBackDto menuBackDto = BeanCopyUtil.copyObject(menu, MenuBackDto.class);
-        menuBackDto.setHasChildren(checkMenuIsHasChildren(id));
-        return menuBackDto;
+        List<MenuBackDto> list = new ArrayList<>();
+        childrenMenu.forEach(children -> {
+            MenuBackDto menuBackDto = BeanCopyUtil.copyObject(children, MenuBackDto.class);
+            menuBackDto.setHasChildren(false);
+            list.add(menuBackDto);
+        });
+        /*------------------------  查询子菜单信息完成  -----------------------------*/
+        return list;
     }
+
 
     @Override
     public List<MenuBackDto> listParentMenu() {
         /*------------------------  开始查询父级菜单信息  -----------------------------*/
         List<Menu> menus = baseMapper.selectList(new LambdaQueryWrapper<Menu>()
                 .eq(Menu::getParentId, CommonConst.MENU_LAYOUT_ID)
-                .eq(Menu::getIsHidden, CommonConst.NOT_HIDDEN)
-                .eq(Menu::getIsDisable, CommonConst.NOT_DISABLE)
                 .eq(Menu::getDelFlag, CommonConst.NOT_DELETE)
                 .orderByAsc(Menu::getOrderNum));
         /*------------------------  查询父级菜单信息完成  -----------------------------*/
@@ -136,6 +128,11 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
         int insert = baseMapper.insert(BeanCopyUtil.copyObject(menuVo, Menu.class));
         AssertUtil.sysIsError(insert == 0, ServiceErrorConst.SAVE_DATA_FAIL);
         /*------------------------  新增菜单信息完成  -----------------------------*/
+        /*------------------------  更新菜单角色关联表信息  -----------------------------*/
+        Menu menu = baseMapper.selectOne(new LambdaQueryWrapper<Menu>().eq(Menu::getMenuName, menuVo.getMenuName()));
+        int menuRoleInsert = menuRoleMapper.insert(new MenuRole(menu.getMenuId(), 1));
+        AssertUtil.sysIsError(menuRoleInsert == 0, ServiceErrorConst.SAVE_DATA_FAIL);
+        /*------------------------  更新菜单角色关联表信息  -----------------------------*/
     }
 
     @Transactional(rollbackFor = NanjustarException.class)
@@ -157,21 +154,42 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     @Transactional(rollbackFor = NanjustarException.class)
     @Override
     public void deleteMenu(Integer id) {
+        /*------------------------  检测子级菜单信息开始  -----------------------------*/
+        Integer count = baseMapper.selectCount(new LambdaQueryWrapper<Menu>()
+                .eq(Menu::getParentId, id)
+                .eq(Menu::getDelFlag, CommonConst.NOT_DELETE));
+        if (count > 0) {
+            throw new NanjustarException(ServiceErrorConst.EXISTS_CHILD_ELEMENT);
+        }
+        /*------------------------  检测子级菜单信息完成  -----------------------------*/
         /*------------------------  开始删除菜单信息  -----------------------------*/
         int delete = baseMapper.deleteById(id);
         AssertUtil.sysIsError(delete == 0, ServiceErrorConst.DELETE_DATA_FAIL);
         /*------------------------  删除菜单信息完成  -----------------------------*/
+        /*------------------------  删除菜单角色对应信息  -----------------------------*/
+        int menuRoleDelete = menuRoleMapper.delete(new LambdaQueryWrapper<MenuRole>()
+                .eq(MenuRole::getMenuId, id));
+        AssertUtil.sysIsError(menuRoleDelete == 0, ServiceErrorConst.DELETE_DATA_FAIL);
+        /*------------------------  删除菜单角色对应信息  -----------------------------*/
     }
 
-    @Transactional(rollbackFor = NanjustarException.class)
     @Override
-    public void deleteMenu(List<Integer> idList) {
-        /*------------------------  开始批量删除菜单信息  -----------------------------*/
-        int delete = baseMapper.deleteBatchIds(idList);
-        AssertUtil.sysIsError(delete == 0, ServiceErrorConst.DELETE_DATA_FAIL);
-        /*------------------------  批量删除菜单信息完成  -----------------------------*/
+    public List<MenuBackDto> listMenuByCondition(MenuConditionVo menuConditionVo) {
+        /*------------------------  开始查询菜单信息  -----------------------------*/
+        List<Menu> menus = baseMapper.selectList(new LambdaQueryWrapper<Menu>()
+                .like(AssertUtil.isNotEmpty(menuConditionVo.getMenuName()), Menu::getMenuName, menuConditionVo.getMenuName())
+                .eq(AssertUtil.isNotNull(menuConditionVo.getIsDisable()), Menu::getIsDisable, menuConditionVo.getIsDisable()));
+        /*------------------------  查询菜单信息完成  -----------------------------*/
+        /*------------------------  数据转化开始  -----------------------------*/
+        List<MenuBackDto> list = new ArrayList<>();
+        menus.forEach(menu -> {
+            MenuBackDto menuBackDto = BeanCopyUtil.copyObject(menu, MenuBackDto.class);
+            menuBackDto.setHasChildren(false);
+            list.add(menuBackDto);
+        });
+        /*------------------------  数据转化完成  -----------------------------*/
+        return list;
     }
-
 
     /**
      * 获取当前登陆用户的角色id集合

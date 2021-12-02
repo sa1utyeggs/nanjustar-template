@@ -29,6 +29,13 @@
 </p>
 
 
+## 1.1 更新内容
+1. 界面效果优化，使界面更加丝滑顺畅。（动画优化）
+2. 完成菜单管理界面部分功能（部分功能）
+3. 新增图标库到项目中（Elementui 图标）
+4. 新增日志管理记录（aop + 自定义注解）
+5. 新增在线预览 [http://49.235.248.222/](http://49.235.248.222/)(nanjustar 超级管理员  admin 管理员)
+
 # CSDN动态
 ## [nanjustar 后台管理 专栏](https://blog.csdn.net/nanshen__/category_11488844.html?spm=1001.2014.3001.5482)
 ##### [(一)nanjustar 楠橘星后台管理系统（简洁版）使用导航](https://blog.csdn.net/nanshen__/article/details/121440416?spm=1001.2014.3001.5501)

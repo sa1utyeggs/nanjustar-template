@@ -1,4 +1,4 @@
-package com.nanjustar.business.util;
+package com.nanjustar.mapper.utils;
 
 import com.nanjustar.api.moudle.security.dto.ConsumerDetailDto;
 import org.springframework.security.core.context.SecurityContextHolder;

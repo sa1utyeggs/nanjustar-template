@@ -1,19 +1,14 @@
 package com.nanjustar.web.controller.security;
 
-
-import com.nanjustar.api.moudle.security.api.ConsumerService;
 import com.nanjustar.api.moudle.security.dto.ConsumerInfoDto;
-import com.nanjustar.api.moudle.security.vo.LoginVo;
-import com.nanjustar.business.util.ConsumerUtil;
+import com.nanjustar.mapper.utils.ConsumerUtil;
 import com.nanjustar.common.enums.RoleLevelEnum;
 import com.nanjustar.common.result.ResponseResult;
 import com.nanjustar.common.utils.BeanCopyUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 
 /**
  * <p>
@@ -37,7 +32,8 @@ public class ConsumerController {
     public ResponseResult<ConsumerInfoDto> getUserInfo() {
         ConsumerInfoDto consumerInfo = BeanCopyUtil.copyObject(ConsumerUtil.getUserDetails(), ConsumerInfoDto.class);
         consumerInfo.setConsumerLevel(RoleLevelEnum.getGenderNameByCode(consumerInfo.getRoleList()));
-        return ResponseResult.success(consumerInfo);
+        return ResponseResult.success("用户信息获取成功！", consumerInfo);
     }
+
 }
 

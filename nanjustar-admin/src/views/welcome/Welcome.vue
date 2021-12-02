@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="animate__animated animate__fadeIn">
     <el-card style="margin:  10px -10px;width: 100%;">
       <el-row style="margin-bottom: 10px">
         <el-collapse>

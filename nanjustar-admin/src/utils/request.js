@@ -19,8 +19,8 @@ axios.interceptors.response.use(
         if (res.status && res.status === 200) {
             //  业务逻辑
             if (res.data.code === 50000 || res.data.code === 401 || res.data.code === 40003) {
-                messageInfo({type: "error", message: res.data.message});
-                return res.data.status = false;
+                messageInfo({type: 'error', message: res.data.message});
+                return res.status = false;
             } else {
                 return res.data;
             }

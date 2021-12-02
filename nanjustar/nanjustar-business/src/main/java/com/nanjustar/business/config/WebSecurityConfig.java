@@ -4,7 +4,9 @@ package com.nanjustar.business.config;
 import com.nanjustar.business.business.security.UserDetailServiceImpl;
 import com.nanjustar.business.filter.JwtAuthenticationTokenFilter;
 import com.nanjustar.business.handler.*;
+import com.nanjustar.business.strategy.CustomExpiredSessionStrategy;
 import com.nanjustar.common.constant.SecurityConst;
+import com.nanjustar.common.constant.SystemConst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +14,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -34,6 +37,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationEntryPointImpl authenticationEntryPoint;
     @Autowired
     private AccessDeniedHandlerImpl accessDeniedHandler;
+    @Autowired
+    private CustomExpiredSessionStrategy customExpiredSessionStrategy;
 
 
     /**
@@ -48,6 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * token 过滤器
+     *
      * @return token 过滤器
      */
     @Bean
@@ -65,13 +71,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login")
                 .successHandler(authenticationSuccessHandler).failureHandler(authenticationFailureHandler)
                 .and()
+                .rememberMe()
+                .key(SystemConst.REMEMBER_ME_KEY)
+                .rememberMeCookieName("remember-me-cookie-name")
+                .tokenValiditySeconds(24 * 60 * 60)   //自动记录1天时间
+                .and()
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessHandler(logoutSuccessHandler);
 
+        /*------------------------  session控制  -----------------------------*/
+        http.sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                .maximumSessions(1)
+                .maxSessionsPreventsLogin(false)
+                .expiredSessionStrategy(customExpiredSessionStrategy);
+
+
         /*------------------------  请求拦截  -----------------------------*/
         http.authorizeRequests()
-                .antMatchers(SecurityConst.WHITE_PAGE_LIST).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .headers()

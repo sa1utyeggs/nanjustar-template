@@ -9,6 +9,16 @@ public class CommonConst {
     public static final Integer MENU_LAYOUT_ID = -1;
 
     /**
+     * 数据字典父级id
+     */
+    public static final Integer DICT_PARENT_ID = -1;
+
+    /**
+     * 数据字典图标编码
+     */
+    public static final String DICT_ICON_CODE = "njs_icon";
+
+    /**
      * 禁用状态
      */
     public static final Integer DISABLE = 1;

@@ -128,9 +128,9 @@ export default {
   font-size: 12px;
   margin-top: 4px;
   margin-left: 5px;
-  background-color: #5839ac;
+  background-color: #5384ed;
   color: #fff;
-  border-color: #5839ac;
+  border-color: #5384ed;
 }
 
 .tabs-view-item-active:before {

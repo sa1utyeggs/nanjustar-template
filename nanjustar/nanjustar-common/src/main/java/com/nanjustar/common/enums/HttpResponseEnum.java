@@ -28,7 +28,11 @@ public enum HttpResponseEnum {
     /**
      * 用户未登陆
      */
-    PLEASE_LOGIN(52002,"尚未登陆，请登陆！");
+    PLEASE_LOGIN(52002,"尚未登陆，请登陆！"),
+    /**
+     * 账号在其他地方登陆，您将被迫下线！
+     */
+    USER_LOGIN_IN_OTHER_PLACE(55555,"账号在其他地方登陆，您将被迫下线！");
 
     private final Integer code;
     private final String message;

@@ -2,5 +2,5 @@ spring:
   # redis 配置
   redis:
     database: 9
-    host: ***    #redis 地址
+    host: ******    #redis 地址
     port: 6379

@@ -1,6 +1,6 @@
 
-import { listMenu } from "@/api/menu/perm";
 import { messageInfo } from "@/utils/MessageInfo";
+import {listMenu} from "../api/menu/permApi";
 
 export const initMenu = (router, store) => {
 

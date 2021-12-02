@@ -6,14 +6,13 @@
     <div class="menu-container">
       <el-scrollbar wrap-class="scrollbar-wrapper">
         <el-menu
-            @open="handleOpen"
             :collapse="isCollapse"
             :unique-opened="true"
             :default-active="this.$route.path"
             :collapse-transition="false"
             background-color="#304156"
             text-color="#fff"
-            active-text-color="#ffd04b"
+            active-text-color="#5a9cf8"
             router
         >
           <el-menu-item
@@ -63,11 +62,6 @@ export default {
   computed: {
     ...mapState(["isCollapse", "menuList"]),
   },
-  methods: {
-    handleOpen(index) {
-      console.log(index)
-    }
-  }
 };
 </script>
 
@@ -75,7 +69,6 @@ export default {
 .main-container {
   width: 101%;
   height: 100%;
-  overflow-x: hidden;
 }
 
 .main-container .logo-container {

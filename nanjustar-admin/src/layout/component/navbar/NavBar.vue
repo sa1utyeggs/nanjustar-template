@@ -38,7 +38,7 @@
 import Bread from "@/layout/component/navbar/Bread";
 import {mapMutations, mapState} from "vuex";
 import {messageInfo} from "@/utils/MessageInfo";
-import {getConsumerInfo} from "@/api/consumer/consumer";
+import {getConsumerInfo} from "../../../api/consumer/consumerApi";
 
 export default {
   name: "NavBar",

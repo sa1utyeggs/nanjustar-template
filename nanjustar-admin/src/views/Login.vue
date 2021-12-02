@@ -28,16 +28,15 @@
           >
           </el-input>
         </el-form-item>
-        <el-checkbox v-model="loginForm.rememberMe" style="margin-bottom: 25px"
-        >记住密码
-        </el-checkbox
-        >
+        <el-checkbox v-model="loginForm.rememberMe" name="remember-me" style="margin-bottom: 25px">记住密码
+        </el-checkbox>
         <el-form-item style="width: 100%">
           <el-button
               :loading="loading"
               size="medium"
               style="width: 100%;background-color: #5839ac;color: #ffffff"
               @click.native.prevent="handleLogin"
+              v-loading.fullscreen.lock="loading"
           >
             <span v-if="!loading">登 录</span>
             <span v-else>登 录 中...</span>
@@ -80,7 +79,7 @@
 
 <script>
 import {messageInfo} from "@/utils/MessageInfo";
-import {Login} from "@/api/login/login";
+import {Login} from "../api/login/loginApi";
 
 export default {
   name: "Login",
@@ -186,6 +185,6 @@ export default {
 .bg {
   z-index: -2;
   width: 1550px;
-  overflow: hidden;
 }
+
 </style>

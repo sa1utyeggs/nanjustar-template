@@ -47,7 +47,7 @@ public class Gender {
         stConfig.setCapitalMode(true) // 全局大写命名
                 .setNaming(NamingStrategy.underline_to_camel)// 数据库表映射到实体的命名策略
                 .setColumnNaming(NamingStrategy.underline_to_camel)
-                .setInclude("njs_opt_log") //生成的表
+                .setInclude("njs_dict") //生成的表
                 .setTablePrefix("njs_")
                 .setControllerMappingHyphenStyle(true)
                 .setEntityLombokModel(true)

@@ -21,12 +21,14 @@ export default new Vuex.Store({
         },
         // 移除标签
         removeTab(state, tab) {
-            var index = state.tabList.findIndex(item => item.name === tab.name);
-            state.tabList.splice(index, 1);
+            if (tab.name !=="首页"){
+                var index = state.tabList.findIndex(item => item.name === tab.name);
+                state.tabList.splice(index, 1);
+            }
         },
         // 重置标签
         resetTab(state) {
-            state.tabList = [{name: "首页", path: "/home"}];
+            state.tabList = [{name: "首页", path: "/welcome"}];
         },
         // 侧边栏折叠
         setCollapse(state) {
