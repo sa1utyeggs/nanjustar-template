@@ -11,7 +11,7 @@
  Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 02/12/2021 16:40:31
+ Date: 16/12/2021 17:24:42
 */
 
 SET NAMES utf8mb4;
@@ -397,6 +397,30 @@ INSERT INTO `njs_dict` VALUES (453, 'el-icon-potato-strips', NULL, 'el-icon-pota
 INSERT INTO `njs_dict` VALUES (454, 'el-icon-lollipop', NULL, 'el-icon-lollipop', 4, 'ᯤ⁸ᴳ⁺(超级管理员)', '2021-12-01 09:51:14', 'ᯤ⁸ᴳ⁺(超级管理员)', '2021-12-01 09:51:14');
 INSERT INTO `njs_dict` VALUES (455, 'el-icon-ice-cream-square', NULL, 'el-icon-ice-cream-square', 4, 'ᯤ⁸ᴳ⁺(超级管理员)', '2021-12-01 09:51:14', 'ᯤ⁸ᴳ⁺(超级管理员)', '2021-12-01 09:51:14');
 INSERT INTO `njs_dict` VALUES (456, 'el-icon-ice-cream-round', NULL, 'el-icon-ice-cream-round', 4, 'ᯤ⁸ᴳ⁺(超级管理员)', '2021-12-01 09:51:14', 'ᯤ⁸ᴳ⁺(超级管理员)', '2021-12-01 09:51:14');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for njs_login_log
+-- ----------------------------
+DROP TABLE IF EXISTS `njs_login_log`;
+CREATE TABLE `njs_login_log` (
+  `logId` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `username` varchar(128) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '用户名',
+  `nickname` varchar(64) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '昵称',
+  `ip_address` varchar(128) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '用户ip',
+  `ip_source` varchar(64) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '用户地址',
+  `brower` varchar(64) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '浏览器',
+  `os` varchar(64) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '操作系统',
+  `status` tinyint(1) DEFAULT '1' COMMENT '登陆状态',
+  `gmt_create` datetime DEFAULT NULL COMMENT '创建时间',
+  `remark` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注信息',
+  PRIMARY KEY (`logId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of njs_login_log
+-- ----------------------------
+BEGIN;
 COMMIT;
 
 -- ----------------------------
